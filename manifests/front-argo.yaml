@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Luis-Diaz-Cryo/data-registration-front-ldiaz.git
-    path: "."
+    path: manifests
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -17,9 +17,4 @@ spec:
       - CreateNamespace=true  
   destination:
     server: https://kubernetes.default.svc  
-    namespace: back-end  
-  ignoreDifferences:
-    - group: ""
-      kind: ConfigMap
-      jsonPointers:
-        - /data/package-lock.json  
+    namespace: front-end  
