@@ -18,3 +18,8 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: back-end
+  ignoreDifferences:
+    - group: ""
+      kind: ConfigMap
+      jsonPointers:
+        - /data/package-lock.json
