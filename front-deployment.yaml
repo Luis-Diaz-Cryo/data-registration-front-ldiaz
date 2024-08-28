@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: react-container
-          image: cyldecryo/parcial1-front-end:8030a19b1c0e13a5411936140c200a2b4502ce47
+          image: cyldecryo/parcial1-front-end:10c9e4fa0e9117c5d37bd3c590d266c627336063
           ports:
             - containerPort: 80
