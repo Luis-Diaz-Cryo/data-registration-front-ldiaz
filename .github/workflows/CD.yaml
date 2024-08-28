@@ -46,7 +46,7 @@ jobs:
           IMAGE_NAME: cyldecryo/parcial1-front-end
           NEW_TAG: ${{ github.sha }}
         run: |
-          yq eval ".spec.template.spec.containers[0].image = \"${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}\"" -i front-deployment.yaml
+          yq eval ".spec.template.spec.containers[0].image = \"${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}\"" -i manifests\front-deployment.yaml
 
       - name: Commit y push cambios
         env:
@@ -54,6 +54,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add front-deployment.yaml
+          git add manifests\front-deployment.yaml
           git commit -m "Actualizar imagen a ${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}"
           git push origin master
