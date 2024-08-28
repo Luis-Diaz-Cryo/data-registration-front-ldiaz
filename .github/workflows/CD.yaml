@@ -26,10 +26,10 @@ jobs:
 
       - name: Build project
         run: CI=false npm run build
-            - name: Construir y Push Docker Image
-
-
-      - uses: mr-smithers-excellent/docker-build-push@v6
+    
+    
+      - name: Construir y Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: cyldecryo/parcial1-front-end
           tags: ${{ github.sha }}
