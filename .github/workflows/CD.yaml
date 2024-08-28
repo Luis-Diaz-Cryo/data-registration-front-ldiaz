@@ -1,0 +1,59 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: CI=false npm run build
+            - name: Construir y Push Docker Image
+
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: cyldecryo/parcial1-front-end
+          tags: ${{ github.sha }}
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: cyldecryo
+          password: ${{ secrets.DockPassword }}
+
+      - name: yq - portable yaml processor
+        uses: mikefarah/yq@v4.44.3
+
+      - name: Actualizar tag de imagen en deployment.yaml
+        env:
+          IMAGE_NAME: cyldecryo/parcial1-front-end
+          NEW_TAG: ${{ github.sha }}
+        run: |
+          yq eval ".spec.template.spec.containers[0].image = \"${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}\"" -i front-deployment.yaml
+
+      - name: Commit y push cambios
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add front-deployment.yaml
+          git commit -m "Actualizar imagen a ${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}"
+          git push origin main

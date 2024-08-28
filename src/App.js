@@ -16,7 +16,7 @@ function App() {
     if (inputData.trim()) {
       const randomId = Math.floor(Math.random() * 1000);
 
-      const newRecord = { id: randomId, data: inputData };
+      const newRecord = { id: randomId, message: inputData };
       axios.post('http://34.122.107.224/save/message', newRecord)
         .then(response => {
           setRecords([...records, response.data]);
@@ -45,14 +45,14 @@ function App() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Mwssage</th>
+            <th>Message</th>
           </tr>
         </thead>
         <tbody>
           {records.map(record => (
             <tr key={record.id}>
               <td>{record.id}</td>
-              <td>{record.data}</td>
+              <td>{record.message}</td>
             </tr>
           ))}
         </tbody>
