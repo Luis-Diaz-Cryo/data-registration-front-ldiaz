@@ -56,4 +56,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add front-deployment.yaml
           git commit -m "Actualizar imagen a ${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}"
-          git push origin main
+          git push origin master
