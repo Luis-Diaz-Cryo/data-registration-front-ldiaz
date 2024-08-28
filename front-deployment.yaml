@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app
+  name: front-end
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: react-app
+      app: front-end
   template:
     metadata:
       labels:
-        app: react-app
+        app: front-end
     spec:
       containers:
-        - name: react-container
+        - name: front-end
           image: cyldecryo/parcial1-front-end:10c9e4fa0e9117c5d37bd3c590d266c627336063
           ports:
             - containerPort: 80
