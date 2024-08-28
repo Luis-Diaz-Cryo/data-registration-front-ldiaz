@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Luis-Diaz-Cryo/parcial-1LDiaz.git
+    repoURL: https://github.com/Luis-Diaz-Cryo/data-registration-front-ldiaz.git
     path: "Patrones-parcial"
     targetRevision: HEAD
   syncPolicy:
