@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: front-end
-  namespace: argocd
+  namespace: argocd  # The namespace where Argo CD is installed
 spec:
   project: default
   source:
@@ -14,12 +14,12 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=true  
   destination:
-    server: https://kubernetes.default.svc
-    namespace: back-end
+    server: https://kubernetes.default.svc  
+    namespace: back-end  
   ignoreDifferences:
     - group: ""
       kind: ConfigMap
       jsonPointers:
-        - /data/package-lock.json
+        - /data/package-lock.json  
