@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 
-
-
 function App() {
   const [inputData, setInputData] = useState('');
   const [records, setRecords] = useState([]);
@@ -30,10 +28,16 @@ function App() {
     }
   };
 
+  const clearAllRecords = () => {
+    axios.delete('http://34.122.107.224/clear/messages')
+      .then(() => setRecords([]))
+      .catch(error => console.error('Error clearing records:', error));
+  };
+
   return (
     <div className="App">
-      <h1>message registration</h1>
-      <label htmlFor="inputData">input a message:</label>
+      <h1>Message Registration</h1>
+      <label htmlFor="inputData">Input a message:</label>
       <input
         type="text"
         id="inputData"
@@ -41,7 +45,8 @@ function App() {
         onChange={(e) => setInputData(e.target.value)}
         placeholder="Write something..."
       />
-      <button onClick={handleAddRecord}>ADD</button>
+      <button onClick={handleAddRecord}>Add</button>
+      <button onClick={clearAllRecords} className="clear-button">Clear All</button>
 
       <table>
         <thead>
