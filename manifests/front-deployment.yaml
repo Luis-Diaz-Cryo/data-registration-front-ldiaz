@@ -7,16 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: react-app  
+      app: react-app
   template:
     metadata:
       labels:
-        app: react-app  
+        app: react-app
     spec:
       containers:
         - name: react-container
-          image: cyldecryo/parcial1-front-end:6472e90359bbccc25d7efcd0a999039d1cc8886e
+          image: cyldecryo/parcial1-front-end:296ecd931ed5f889e7a0d3a6c57838cb803d715b
           ports:
             - containerPort: 80
-
-
