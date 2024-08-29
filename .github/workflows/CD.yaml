@@ -54,6 +54,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add manifests\front-deployment.yaml
+          git add manifests/front-deployment.yaml
           git commit -m "Actualizar imagen a ${{ env.IMAGE_NAME }}:${{ env.NEW_TAG }}"
           git push origin master
